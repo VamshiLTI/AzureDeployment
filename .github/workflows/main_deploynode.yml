@@ -24,8 +24,11 @@ jobs:
       - name: Build
         run: npm start # Replace with your build command if needed
       
-      - name: Deploy to Azure App Service
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: deploynode
+          app-name: 'deploynode'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: . 
